@@ -1,0 +1,95 @@
+.mainmenu {
+	position: relative;
+	z-index: 9;
+	display: none;
+	transition: 1s;
+	-webkit-transition: 1s;
+	-moz-transition: 1s;
+	-ms-transition: 1s;
+	-o-transition: 1s;
+	flex-direction: column;
+}
+.mainmenu-hamburger {
+	display: flex;
+	background-color: transparent;
+	outline: none;
+	color: #e39e48;
+	border: 1px solid #e39e48;
+	border-radius: 15px;
+	-webkit-border-radius: 15px;
+	-moz-border-radius: 15px;
+	-ms-border-radius: 15px;
+	-o-border-radius: 15px;
+	padding: 5px 15px;
+	margin: auto;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+	font-size: 16px;
+}
+.mainmenu-hamburger:hover,
+.mainmenu-hamburger:focus {
+	color: #ffffff;
+	background-color: #e39e48;
+	border: 1px solid #aaaaaa;
+}
+
+.mainmenu li a {
+	text-decoration: none;
+	color: #ffffff;
+	padding: 15px;
+	font-size: 21px;
+	transition: 0.76s;
+	-webkit-transition: 0.76s;
+	-moz-transition: 0.76s;
+	-ms-transition: 0.76s;
+	-o-transition: 0.76s;
+}
+.menu-open {
+	display: flex;
+}
+.mainmenu a:hover {
+	background-color: rgba(255, 255, 255, 0.97);
+	transition: 0.76s;
+	-webkit-transition: 0.76s;
+	-moz-transition: 0.76s;
+	-ms-transition: 0.76s;
+	-o-transition: 0.76s;
+}
+
+@media (min-width: 576px) {
+}
+
+@media (min-width: 768px) {
+}
+
+@media (min-width: 992px) {
+	header nav a {
+		font-size: 17px;
+	}
+	.header-menu ul li:nth-child(2) a {
+		font-size: 26px;
+	}
+}
+
+@media (min-width: 1200px) {
+	.mainmenu-hamburger {
+		display: none;
+	}
+	.mainmenu {
+		display: flex;
+		flex-direction: row;
+	}
+	.mainmenu li a,
+	header nav a {
+		font-size: 21px;
+	}
+	.header-menu {
+		justify-content: flex-end;
+	}
+	.header-menu ul li:nth-child(2) a {
+		font-size: 31px;
+	}
+}
+
+@media (min-width: 1400px) {
+}

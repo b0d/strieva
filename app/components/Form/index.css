@@ -1,0 +1,56 @@
+.form-block {
+	position: relative;
+	z-index: 9;
+	backdrop-filter: blur(10px);
+	padding: 15px 30px;
+}
+
+.form-block input {
+	width: 100%;
+	margin: 0 0 20px;
+	padding: 14px 18px;
+	font-family: inherit;
+	font-size: 21px;
+	line-height: 20px;
+	font-weight: inherit;
+	color: #ffffff;
+	background-color: transparent;
+	border: 1px solid #e1e1e1;
+	border-radius: 0;
+	outline: 0;
+	cursor: pointer;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+	-webkit-transition: border-color 0.2s ease-in-out;
+	-o-transition: border-color 0.2s ease-in-out;
+	transition: border-color 0.2s ease-in-out;
+}
+.form-block button {
+	font-family: inherit;
+	position: relative;
+	display: inline-block;
+	vertical-align: middle;
+	width: auto;
+	outline: 0;
+	font-size: 18px;
+	line-height: 2em;
+	letter-spacing: 0.1em;
+	font-weight: 700;
+	text-transform: uppercase;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+	margin: 0;
+	-webkit-transition: all 0.15s ease-out;
+	-o-transition: all 0.15s ease-out;
+	transition: all 0.15s ease-out;
+	padding: 13px 23px;
+	color: #fff;
+	background-color: #e39e48;
+	border: 2px solid transparent;
+	cursor: pointer;
+}
+
+.form-block button:hover {
+	border: 2px solid #e39e48;
+	background-color: transparent;
+}

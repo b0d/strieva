@@ -1,0 +1,19 @@
+ol {
+	list-style: none;
+}
+ol li {
+	margin: 0 6px;
+	position: relative;
+}
+ol li::before {
+	content: ">";
+	position: absolute;
+	left: -11px;
+}
+
+ol li a {
+	color: #ed3333;
+}
+ol li a:hover {
+	text-decoration: underline;
+}

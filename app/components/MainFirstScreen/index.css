@@ -1,0 +1,38 @@
+.first-main-screen h1 {
+	position: relative;
+	z-index: 9;
+}
+
+@media (min-width: 576px) {
+}
+
+@media (min-width: 768px) {
+}
+
+@media (min-width: 992px) {
+	.first-main-screen {
+		background: url("/imgs/bg.webp") center center no-repeat;
+		background-size: cover;
+		min-height: 100vh;
+		position: relative;
+		background-attachment: fixed;
+	}
+	.first-main-screen::after {
+		content: "";
+		width: 100%;
+		height: 100%;
+		position: absolute;
+		top: 0;
+		left: 0;
+		bottom: 0;
+		right: 0;
+		z-index: 1;
+		background: rgba(0, 0, 0, 0.5);
+	}
+}
+
+@media (min-width: 1200px) {
+}
+
+@media (min-width: 1400px) {
+}

@@ -1,0 +1,44 @@
+@import "bootstrap/dist/css/bootstrap.min.css";
+* {
+	margin: 0;
+	padding: 0;
+}
+@font-face {
+	font-family: "Mulish";
+	src: url("../../public/fonts/Mulish-Regular.ttf") format("ttf");
+}
+@font-face {
+	font-family: "Comfortaa";
+	src: url("../../public/fonts/Comfortaa-VariableFont_wght.ttf") format("ttf");
+}
+html,
+body {
+	width: 100%;
+	height: 100%;
+	font-family: "Mulish";
+	background-color: #222222;
+	color: #ffffff;
+}
+.te-color {
+	color: #e39e48;
+}
+.bor-color {
+	color: #705a32;
+}
+@media (min-width: 576px) {
+	.example {
+		font-size: 18px;
+	}
+}
+
+@media (min-width: 768px) {
+	.example {
+		font-size: 20px;
+	}
+}
+
+@media (min-width: 992px) {
+	.example {
+		font-size: 22px;
+	}
+}

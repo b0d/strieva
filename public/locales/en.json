@@ -1,0 +1,15 @@
+{
+    "HomePage": {
+        "mainh1": "БудинокEN для відпочинку",
+        "price": "enggg",
+        "en": "srEN"
+    },
+    "welcome": "Welcome",
+    "hello_world": "Hello, World!",
+    "404_title": "Page Not Found",
+    "404_message": "We couldn't find what you were looking for.",
+    "price": {
+        "welcome": "priceE Welcome",
+        "hello_world": "priceE Hello, World!"
+    }
+}

@@ -1,0 +1,15 @@
+{
+    "HomePage": {
+        "mainh1": "БудинокUK для відпочинку",
+        "price": "UKrrr",
+        "ru": "UKru"
+    },
+    "welcome": "Привіт!",
+    "hello_world": "Привіт, Світ!",
+    "404_title": "Page Not Found",
+    "404_message": "We couldn't find what you were looking for.",
+    "price": {
+        "welcome": "priceU Welcome",
+        "hello_world": "priceU Hello, World!"
+    }
+}
