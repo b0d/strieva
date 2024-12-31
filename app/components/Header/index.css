@@ -3,7 +3,9 @@ header {
 	position: relative;
 	z-index: 9;
 }
-
+header nav {
+	justify-content: center;
+}
 header nav a {
 	color: #c4b8a2;
 	text-decoration: none;
@@ -56,6 +58,7 @@ nav ul {
 	text-align: center;
 	margin: 5px 0;
 }
+
 @media (min-width: 576px) {
 	.header-menu ul li:nth-child(2) a {
 		font-size: 36px;

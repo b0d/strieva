@@ -24,7 +24,7 @@ export default function Header({ lng }) {
 			<div className='col-12 col-md-12 col-lg-6'>
 				<TopMenu lng={lng} />
 			</div>
-			<nav className='header-menu d-flex flex-wrap justify-content-end col-12 col-md-12 col-lg-4 col-xl-4'>
+			<nav className='header-menu d-flex flex-wrap col-12 col-md-12 col-lg-4 col-xl-4'>
 				<ul className='p-0 m-0 list-unstyled text-start'>
 					<li>
 						<a href='https://g.co/kgs/bCGmF1Y'>
@@ -39,13 +39,13 @@ export default function Header({ lng }) {
 						</a>
 					</li>
 					<li>
-						<a href='/' className='me-3'>
+						<a href='https://wa.me/380970173737' className='me-3'>
 							<WhatsAppIcon sx={{ fontSize: 28 }} /> WhatsApp
 						</a>
-						<a href='/' className='me-3'>
+						<a href='https://t.me/@Eco_House_Strieva' className='me-3'>
 							<TelegramIcon sx={{ fontSize: 28 }} /> Telegram
 						</a>
-						<a href='/'>
+						<a href='viber://add?number=380970173737'>
 							<ViberAppIcon sx={{ fontSize: 28 }} /> Viber
 						</a>
 					</li>

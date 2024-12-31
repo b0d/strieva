@@ -31,65 +31,50 @@ export default function TopMenu({ lng }) {
 			>
 				<li className='m-2'>
 					<a
-						href='/price'
+						href='#price'
 						className='d-flex border-light px-3 rounded-pill'
 						onClick={() => setHamburger(false)}
 					>
-						Ціни та Бронювання
+						Ціни
 					</a>
 				</li>
 				<li className='m-2'>
 					<a
-						href='/price'
+						href='#whatwehave'
 						className='d-flex border-light px-3 rounded-pill'
 						onClick={() => setHamburger(false)}
 					>
-						Що входить у вартість
+						Зручності
 					</a>
 				</li>
+
 				<li className='m-2'>
 					<a
-						href='/news'
+						href='#photos'
 						className='d-flex border-light px-3 rounded-pill'
 						onClick={() => setHamburger(false)}
 					>
-						Фотографії
+						Фото
 					</a>
 				</li>
+
 				<li className='m-2'>
 					<a
-						href='/holidays'
-						className='d-flex border-light px-3 rounded-pill'
-						onClick={() => setHamburger(false)}
-					>
-						Відгуки
-					</a>
-				</li>
-				<li className='m-2'>
-					<a
-						href='/ruels'
+						href='#howtofind'
 						className='d-flex border-light px-3 rounded-pill'
 						onClick={() => setHamburger(false)}
 					>
 						Як доїхати
 					</a>
 				</li>
+
 				<li className='m-2'>
 					<a
-						href='/ruels'
+						href='#ruels'
 						className='d-flex border-light px-3 rounded-pill'
 						onClick={() => setHamburger(false)}
 					>
-						Сертифікати та Акції
-					</a>
-				</li>
-				<li className='m-2'>
-					<a
-						href='/ruels'
-						className='d-flex border-light px-3 rounded-pill'
-						onClick={() => setHamburger(false)}
-					>
-						Правила проживиння
+						Поширені питання
 					</a>
 				</li>
 			</ul>

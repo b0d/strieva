@@ -78,7 +78,7 @@ export default function Form({ lng, content }) {
 	};
 
 	return (
-		<aside className='form-block col-8'>
+		<aside className='form-block col-12 col-sm-12 col-lg-10'>
 			{isClient && (
 				<form
 					method='POST'
