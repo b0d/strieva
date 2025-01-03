@@ -5,18 +5,7 @@
     <changefreq>weekly</changefreq>
     <priority>1</priority>
   </url>
-  <url>
-    <loc>https://strieva.com/ru</loc>
-    <lastmod>2024-10-10T15:02:24.021Z</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>1</priority>
-  </url>
-  <url>
-    <loc>https://strieva.com/en/</loc>
-    <lastmod>2024-10-10T15:02:24.021Z</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>1</priority>
-  </url>   
+ 
 
 
 </urlset>

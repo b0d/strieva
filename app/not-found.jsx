@@ -1,9 +1,18 @@
-import { routing } from "../i18n/routing";
-
-export default function GlobalNotFound() {
+export default function NotFound() {
 	return (
-		<div className='col-12'>
-			<h1>404</h1>
-		</div>
+		<html lang='en'>
+			<head>
+				<title>Page Not Found</title>
+			</head>
+			<body>
+				<div style={{ textAlign: "center", marginTop: "50px" }}>
+					<h1>404 - Page Not Found</h1>
+					<p>The page you are looking for does not exist or has been moved.</p>
+					<a href='/' style={{ textDecoration: "underline", color: "blue" }}>
+						Go back to the homepage
+					</a>
+				</div>
+			</body>
+		</html>
 	);
 }

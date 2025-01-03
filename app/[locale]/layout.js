@@ -32,7 +32,7 @@ export default async function LocaleLayout({ children, params }) {
 
 
       <WhereAreWe currentLanguage={locale} />
-      <GoogleAnalytics gaId='G-GGGGGGGGG' />
+      <GoogleAnalytics gaId='G-LQWCGN68EM' />
       <body>
         <NextIntlClientProvider locale={locale} messages={messages}>{children}</NextIntlClientProvider></body>
     </html>
