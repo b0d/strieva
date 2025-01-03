@@ -10,7 +10,7 @@ import ViberAppIcon from "../Svg/viber";
 export default function Footer({ lng }) {
 	return (
 		<footer className='d-flex flex-wrap justify-content-between pt-4 align-items-center'>
-			<div className='col-12 col-md-12 col-lg-8'>
+			<div className='col-12 col-md-12 col-lg-9'>
 				<ul className='footer-contacts p-0 m-0 list-unstyled d-flex flex-wrap justify-content-around'>
 					<li>
 						<a href='https://g.co/kgs/bCGmF1Y' className='me-3 te-color'>
@@ -47,26 +47,8 @@ export default function Footer({ lng }) {
 					</li>
 				</ul>
 			</div>
-			<div className='col-6 col-md-6 col-lg-2 pt-3'>
-				<ul className='footer-languages list-unstyled d-flex justify-content-around flex-wrap'>
-					<li>
-						<a href={lng === "ru" ? "/ru" : "/ru"} className='te-color'>
-							ru
-						</a>
-					</li>
-					<li>
-						<a href={lng === "en" ? "/en" : "/en"} className='te-color'>
-							en
-						</a>
-					</li>
-					<li>
-						<a href={lng === "uk" ? "/" : "/uk"} className='te-color'>
-							uk
-						</a>
-					</li>
-				</ul>
-			</div>
-			<div className='col-6 col-md-6 col-lg-2 pt-3'>
+
+			<div className='col-12 col-md-12 col-lg-3 pt-3'>
 				<ul className='footer-social list-unstyled d-flex justify-content-around flex-wrap'>
 					<li>
 						<a
