@@ -15,8 +15,8 @@ export async function generateMetadata({ params }) {
 	const { locale } = await params;
 	const t = await getTranslations({ locale });
 	return {
-		title: t("HomePage.mainh1"),
-		description: "ssss",
+		title: t("HomePage.title"),
+		description: t("HomePage.description"),
 	};
 }
 export async function generateStaticParams() {
@@ -52,68 +52,61 @@ export default async function LocalePage({ params }) {
 					id='price'
 				>
 					<div className='col-12'>
-						<h3>Шале з чаном Стрієва</h3>
+						<h3>{t("HomePage.h32")}</h3>
 						<table>
 							<thead>
 								<tr>
-									<th scope='col'>Послуга</th>
-									<th scope='col'>Вартість доби</th>
-									<th scope='col'>Примітки</th>
+									<th scope='col'>{t("HomePage.tableHeader1")}</th>
+									<th scope='col'>{t("HomePage.tableHeader2")}</th>
+									<th scope='col'>{t("HomePage.tableHeader3")}</th>
 								</tr>
 							</thead>
 							<tbody>
 								<tr>
-									<th scope='row'>Оренда А-frame будинку (за 2 людей)</th>
-									<td>3500 грн</td>
+									<th scope='row'>{t("HomePage.tableRow1")}</th>
+									<td>{t("HomePage.tableRow1price")}</td>
 									<td>
-										Ціна за 2 людей/1 доба. Додаткові гості оплачуються окремо.
-										Максимум 4 дорослих.
+										{t("HomePage.tableRow1note")}
 									</td>
 								</tr>
 								<tr>
-									<th scope='row'>Оренда закарпатського чану</th>
-									<td>1500 грн</td>
-									<td>Ціна вказана за добу. Безлім, без додатків.</td>
+									<th scope='row'>{t("HomePage.tableRow2")}</th>
+									<td>{t("HomePage.tableRow2price")}</td>
+									<td>{t("HomePage.tableRow2note")}</td>
 								</tr>
 
 								<tr>
-									<th scope='row'>Додатковий гість</th>
-									<td>500 грн</td>
-									<td>Ціна за +1 додаткового гостя.</td>
+									<th scope='row'>{t("HomePage.tableRow3")}</th>
+									<td>{t("HomePage.tableRow3price")}</td>
+									<td>{t("HomePage.tableRow3note")}</td>
 								</tr>
 
 								<tr>
-									<th scope='row'>Мангал</th>
-									<td>0/200 грн</td>
+									<th scope='row'>{t("HomePage.tableRow4")}</th>
+									<td>{t("HomePage.tableRow4price")}</td>
 									<td>
-										За умови використання вугілля - безкоштовно. Є можливість
-										придбати на місці.
+										{t("HomePage.tableRow4note")}
 									</td>
 								</tr>
 								<tr>
-									<th scope='row'>Додатки до чану</th>
+									<th scope='row'>{t("HomePage.tableRow5")}</th>
 									<td colSpan='2'>
 										<ul className='p-0'>
 											<li>
-												300 грн - Збір цілющих трав для чану: кропива, цвіт
-												липи, чебрець, корінь кульбаби, м’ята, кора крушини,
-												лист берези, череда, ромашка;
+												{t("HomePage.tableRow5li1")}
 											</li>
-											<li>250 грн - Чан з цитрусом: апельсин та грейпфрут;</li>
-											<li>450 грн - Чан на молоці;</li>
+											<li>{t("HomePage.tableRow5li2")}</li>
+											<li>{t("HomePage.tableRow5li3")}</li>
 											<li>
-												600 грн - Чан на молоці з цитрусом(апельсин,
-												грейфрутом).
+												{t("HomePage.tableRow5li4")}
 											</li>
 										</ul>
 									</td>
 								</tr>
 								<tr>
-									<th scope='row'>Умови бронювання</th>
+									<th scope='row'>{t("HomePage.tableRow6")}</th>
 									<td colSpan='3'>
-										Бронювання здійснюється при обовязковій умові передплати
-										50%. Максимальна кількість дорослих - 4. Заселення 15:00.
-										Виїзд - 11:00.
+										{t("HomePage.tableRow6note")}
 									</td>
 								</tr>
 							</tbody>
@@ -125,7 +118,7 @@ export default async function LocalePage({ params }) {
 					</div>
 					<div className='col-12 d-flex flex-row flex-wrap justify-content-between pt-4'>
 						<div className='col-12'>
-							<h3>Подобова оренда будинку</h3>
+							address2
 						</div>
 
 						<div className='col-12 col-lg-7 py-3' id='howtofind'>
@@ -147,24 +140,17 @@ export default async function LocalePage({ params }) {
 									/>
 								</a>
 								<address>
-									вулиця Перемоги, 37,
-									<br /> с. Стриєва, Житомирська область,
-									<br /> Україна, 11777
-									<br /> Тел: +38-097-017-37-37
+									{t("HomePage.address2")}
 								</address>
 							</div>
 						</div>
 						<div className='col-12'>
-							EcoHouse Strieva — це більше, ніж просто будиночок із чаном. Це
-							місце, де створюються незабутні спогади, відновлюється гармонія і
-							душевний спокій. Зняти будинок із чаном у нас — значить подарувати
-							собі та близьким унікальний відпочинок, який ви захочете
-							повторити!
+							{t("HomePage.address2p")}
 						</div>
 					</div>
 				</section>
 				<section className='container d-flex flex-row flex-wrap justify-content-between'>
-					<span className='col-12 like-header p-2'>Поширені запитання:</span>
+					<span className='col-12 like-header p-2'>{t("HomePage.h34")}</span>
 
 					<Accordion qa={qa} />
 				</section>

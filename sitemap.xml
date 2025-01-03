@@ -19,51 +19,6 @@
   </url>   
 
 
-
-
-
-
-
-
-  <url>
-    <loc>https://strieva.com/holidays/</loc>
-    <lastmod>2024-10-10T15:02:24.021Z</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-    <url>
-    <loc>https://strieva.com/ru/holidays/</loc>
-    <lastmod>2024-10-10T15:02:24.021Z</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-    <url>
-    <loc>https://strieva.com/en/holidays/</loc>
-    <lastmod>2024-10-10T15:02:24.021Z</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-
-
-
-  <url>
-    <loc>https://strieva.com/gallery/</loc>
-    <lastmod>2024-10-10T15:02:24.021Z</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://strieva.com/ru/gallery/</loc>
-    <lastmod>2024-10-10T15:02:24.021Z</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://strieva.com/en/gallery/</loc>
-    <lastmod>2024-10-10T15:02:24.021Z</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.5</priority>
-  </url>
 </urlset>
 
 

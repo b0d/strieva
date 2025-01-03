@@ -3,11 +3,12 @@ import RoomOutlinedIcon from "@mui/icons-material/RoomOutlined";
 import TelegramIcon from "@mui/icons-material/Telegram";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 import ViberAppIcon from "../Svg/viber";
-
+import { getTranslations } from "next-intl/server";
 import "./index.css";
 import TopMenu from "../TopMenu";
 import Image from "next/image";
-export default function Header({ lng }) {
+export default async function Header({ lng }) {
+	const t = await getTranslations({ lng });
 	return (
 		<header className='d-flex flex-wrap justify-content-between p-3 align-items-center'>
 			<div className='logo-header-block col-12 col-md-12 col-lg-2'>
@@ -29,7 +30,7 @@ export default function Header({ lng }) {
 					<li>
 						<a href='https://g.co/kgs/bCGmF1Y'>
 							<RoomOutlinedIcon className='me-1' sx={{ fontSize: 36 }} />
-							с. Стриєва, вул. Перемоги 37
+							{t("HomePage.address")}
 						</a>
 					</li>
 					<li>
