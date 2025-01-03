@@ -31,7 +31,16 @@ export default async function LocaleLayout({ children, params }) {
       <link rel='manifest' href='/site.webmanifest' />
 
 
-      <WhereAreWe currentLanguage={locale} />
+      <link rel='canonical' href="https://strieva.com" />
+
+
+      <link
+        rel='alternate'
+        hrefLang='x-default'
+        href="https://strieva.com"
+      />
+
+
       <GoogleAnalytics gaId='G-LQWCGN68EM' />
       <body>
         <NextIntlClientProvider locale={locale} messages={messages}>{children}</NextIntlClientProvider></body>

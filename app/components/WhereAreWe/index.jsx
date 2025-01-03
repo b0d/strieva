@@ -4,7 +4,7 @@ import { usePathname } from "next/navigation";
 
 export default function WhereAreWe({ currentLanguage }) {
 	const pathname = usePathname(); // Отримуємо поточний шлях, наприклад: /vacancies
-	const languages = ["en", "uk", "ru"]; // Підтримувані мови
+	const languages = ["uk"]; // Підтримувані мови
 	const defaultLocale = "uk"; // Локаль за замовчуванням
 	const baseUrl = "https://strieva.com";
 
