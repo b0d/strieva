@@ -118,7 +118,7 @@ export default async function LocalePage({ params }) {
 					</div>
 					<div className='col-12 d-flex flex-row flex-wrap justify-content-between pt-4'>
 						<div className='col-12'>
-							address2
+							{t("HomePage.h33")}
 						</div>
 
 						<div className='col-12 col-lg-7 py-3' id='howtofind'>
