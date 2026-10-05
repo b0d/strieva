@@ -10,10 +10,7 @@ export default function TopMenu({ lng, messages }) {
 
 	const t = messages?.HomePage;
 	return (
-		<nav
-			className='d-flex flex-wrap p-3 align-items-center'
-			aria-label={t.menuLabel}
-		>
+		<nav className='header-nav' aria-label={t.menuLabel}>
 			<button
 				type='button'
 				className='mainmenu-hamburger'
@@ -25,54 +22,52 @@ export default function TopMenu({ lng, messages }) {
 				☰
 			</button>
 			<ul
-				className={`mainmenu w-100 p-0 m-0 list-unstyled  flex-wrap justify-content-between ${
-					hamburger ? "menu-open" : ""
-				}`}
+				className={`mainmenu list-unstyled ${hamburger ? "menu-open" : ""}`}
 				id='appmenu'
 			>
-				<li className='m-2'>
+				<li>
 					<a
 						href='#price'
-						className='d-flex border-light px-3 rounded-pill'
+						className='d-flex border-light rounded-pill'
 						onClick={() => setHamburger(false)}
 					>
 						{t.menu1}
 					</a>
 				</li>
-				<li className='m-2'>
+				<li>
 					<a
 						href='#whatwehave'
-						className='d-flex border-light px-3 rounded-pill'
+						className='d-flex border-light rounded-pill'
 						onClick={() => setHamburger(false)}
 					>
 						{t.menu2}
 					</a>
 				</li>
 
-				<li className='m-2'>
+				<li>
 					<a
 						href='#photos'
-						className='d-flex border-light px-3 rounded-pill'
+						className='d-flex border-light rounded-pill'
 						onClick={() => setHamburger(false)}
 					>
 						{t.menu3}
 					</a>
 				</li>
 
-				<li className='m-2'>
+				<li>
 					<a
 						href='#howtofind'
-						className='d-flex border-light px-3 rounded-pill'
+						className='d-flex border-light rounded-pill'
 						onClick={() => setHamburger(false)}
 					>
 						{t.menu4}
 					</a>
 				</li>
 
-				<li className='m-2'>
+				<li>
 					<a
 						href='#ruels'
-						className='d-flex border-light px-3 rounded-pill'
+						className='d-flex border-light rounded-pill'
 						onClick={() => setHamburger(false)}
 					>
 						{t.menu5}

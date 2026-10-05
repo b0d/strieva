@@ -15,8 +15,8 @@ export default function Header({ lng, messages = {} }) {
 	const t = messages?.HomePage;
 
 	return (
-		<header className='d-flex flex-wrap justify-content-between p-3 align-items-center'>
-			<div className='logo-header-block col-12 col-md-12 col-lg-2'>
+		<header>
+			<div className='logo-header-block'>
 				<a href={getLocalePath(lng)}>
 					<Image
 						src='/imgs/logo.webp'
@@ -28,37 +28,35 @@ export default function Header({ lng, messages = {} }) {
 				</a>
 			</div>
 
-			<div className='col-12 col-md-12 col-lg-6'>
-				<TopMenu lng={lng} messages={messages} />
-			</div>
+			<TopMenu lng={lng} messages={messages} />
 
-			<nav
-				className='header-menu d-flex flex-wrap col-12 col-md-12 col-lg-4 col-xl-4'
-				aria-label={t.contactsLabel}
-			>
-				<div className="col-12 col-lg-12 mb-2 d-flex flex-wrap flex-row align-items-center justify-content-center justify-content-xl-end">
+			{/* На телефоні з цього блоку видно лише перемикач мов: контакти там у нижній панелі */}
+			<nav className='header-menu' aria-label={t.contactsLabel}>
+				<div className='header-menu__main'>
+					<a href='tel:+380970173737' className='header-phone'>
+						<PhoneIcon className='me-2' />
+						<span>+38-097-017-37-37</span>
+					</a>
 					<LanguageSwitcher currentLocale={lng} />
 				</div>
-				<ul className='p-0 m-0 list-unstyled text-start'>
+				<ul className='header-menu__links list-unstyled'>
 					<li>
 						<a href={MAPS_PLACE_URL}>
-							<RoomIcon size={36} className='me-1' />
+							<RoomIcon />
 							{t.address || "Адреса"}
 						</a>
 					</li>
 					<li>
-						<a href='tel:+380970173737' className="h3">
-							<PhoneIcon size={36} className='me-2' />
-							<span>+38-097-017-37-37</span>
+						<a href='https://wa.me/380970173737'>
+							<WhatsAppIcon /> WhatsApp
 						</a>
 					</li>
 					<li>
-						<a href='https://wa.me/380970173737' className='me-3'>
-							<WhatsAppIcon size={28} /> WhatsApp
+						<a href={SOCIAL_LINKS.telegram}>
+							<TelegramIcon /> Telegram
 						</a>
-						<a href={SOCIAL_LINKS.telegram} className='me-3'>
-							<TelegramIcon size={28} /> Telegram
-						</a>
+					</li>
+					<li>
 						<a href='viber://chat?number=%2B380970173737'>
 							<ViberAppIcon /> Viber
 						</a>

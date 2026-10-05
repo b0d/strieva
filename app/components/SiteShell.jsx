@@ -13,6 +13,13 @@ export default function SiteShell({ lang, children }) {
 				<link
 					rel='preload'
 					as='image'
+					href='/imgs/Gallery/0.webp'
+					media='(max-width: 991.98px)'
+					fetchPriority='high'
+				/>
+				<link
+					rel='preload'
+					as='image'
 					href='/imgs/bg.webp'
 					media='(min-width: 992px)'
 					fetchPriority='high'

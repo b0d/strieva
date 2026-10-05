@@ -54,6 +54,13 @@ h5,
 h6 {
 	font-family: "Mulish", "Mulish Fallback", sans-serif;
 }
+/* Шапка і блок із фото разом займають рівно один екран */
+.first-screen {
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+	min-height: 100svh;
+}
 .te-color {
 	color: #e39e48;
 	fill: #e39e48;

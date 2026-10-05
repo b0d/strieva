@@ -35,8 +35,10 @@ export default function LocalePageContent({ locale, messages = {} }) {
 	return (
 		<>
 			<StructuredData locale={locale} messages={messages} qa={qa} />
-			<Header lng={locale} messages={messages} />
-			<MainFirstScreen lng={locale} messages={messages} />
+			<div className="first-screen">
+				<Header lng={locale} messages={messages} />
+				<MainFirstScreen lng={locale} messages={messages} />
+			</div>
 			<main>
 				<ContentBlock lng={locale} messages={messages} content={content} />
 				<WhatWeHave lng={locale} messages={messages} />

@@ -1,10 +1,12 @@
 header {
-	flex-direction: column;
 	position: relative;
-	z-index: 9;
-}
-header nav {
-	justify-content: center;
+	/* вище за заголовок і форму першого екрана, щоб відкрите меню їх перекривало */
+	z-index: 10;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 6px;
+	padding: 8px 10px;
 }
 header nav a,
 footer a {
@@ -40,65 +42,97 @@ header nav a:hover span {
 	-ms-transition: 1s;
 	-o-transition: 1s;
 }
-.logo-header-block,
-nav ul {
-	justify-content: center;
-	display: flex;
-	flex-wrap: wrap;
+.logo-header-block {
+	flex: 0 0 auto;
 }
-.header-menu ul,
-.header-menu ul li:last-child {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-}
-.header-menu ul li:last-child {
-	text-align: center;
-}
-.header-menu ul li {
-	text-align: center;
-	margin: 5px 0;
+.logo-header-block img {
+	display: block;
+	width: 52px;
+	height: 52px;
 }
 
-@media (min-width: 576px) {
-	nav ul {
-		flex-direction: column;
-	}
-	nav ul li {
-		display: flex;
-		justify-content: center;
-	}
+/* Телефон і планшет: логотип, мови, кнопка меню в один рядок */
+.header-menu {
+	order: 2;
+	margin-left: auto;
+}
+.header-phone,
+.header-menu__links {
+	display: none;
 }
 
-@media (min-width: 768px) {
-	.header-menu ul li {
-		text-align: inherit;
-		margin: 0;
+/* Найвужчі телефони (320px): інакше перемикач мов не вміщається в рядок */
+@media (max-width: 359.98px) {
+	header {
+		gap: 4px;
+	}
+	.logo-header-block img {
+		width: 44px;
+		height: 44px;
 	}
 }
 
 @media (min-width: 992px) {
 	header {
-		flex-direction: row;
+		gap: 12px;
+		padding: 8px 20px;
 	}
-	.logo-header-block {
-		justify-content: start;
+	header nav a {
+		font-size: 16px;
 	}
-}
-
-@media (min-width: 1200px) {
-	nav ul li {
-		justify-content: end;
+	.logo-header-block img {
+		width: 88px;
+		height: 88px;
 	}
-	.header-menu ul li:last-child {
-		text-align: center;
-	}
-	.header-menu ul li:last-child {
+	/* Контакти у два рядки: телефон і мови, під ними адреса та месенджери */
+	.header-menu {
 		display: flex;
-		flex-direction: row;
-		justify-content: center;
+		flex-direction: column;
+		align-items: flex-end;
+		gap: 6px;
+	}
+	.header-menu__main {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		justify-content: flex-end;
+		gap: 4px 16px;
+	}
+	.header-phone {
+		display: flex;
+		align-items: center;
+		color: #ffffff;
+		font-size: 24px;
+		white-space: nowrap;
+	}
+	.header-phone .svg-icon {
+		font-size: 26px;
+	}
+	.header-menu__links {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: flex-end;
+		gap: 2px 12px;
+		margin: 0;
+	}
+	.header-menu__links a {
+		display: inline-flex;
+		align-items: center;
+		gap: 4px;
+		font-size: 15px;
+		white-space: nowrap;
+	}
+	.header-menu__links svg {
+		width: 20px;
+		height: 20px;
+		font-size: 20px;
 	}
 }
 
-@media (min-width: 1400px) {
+/* Від 1280px меню стоїть у шапці між логотипом і контактами */
+@media (min-width: 1280px) {
+	.header-menu {
+		order: 0;
+		margin-left: 0;
+	}
 }
