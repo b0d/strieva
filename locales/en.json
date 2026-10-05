@@ -70,7 +70,9 @@
         "routeLink": "Get directions in Google Maps",
         "videoLabel": "EcoHouse Strieva video tour",
         "videoFallback": "Your browser does not support video.",
-        "ogImageAlt": "EcoHouse Strieva A-frame house with a Transcarpathian hot tub and a fire pit"
+        "ogImageAlt": "EcoHouse Strieva A-frame house with a Transcarpathian hot tub and a fire pit",
+        "callLabel": "Call",
+        "quickContactLabel": "Quick contact"
     },
     "form": {
         "placeholder": "+38 097 017 37 37",

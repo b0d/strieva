@@ -1,0 +1,53 @@
+:root {
+	--contact-bar-height: 58px;
+}
+
+.mobile-contact-bar {
+	position: fixed;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	z-index: 20;
+	display: flex;
+	height: var(--contact-bar-height);
+	background-color: #1b1b1b;
+	border-top: 1px solid #705a32;
+}
+.mobile-contact-bar a {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 2px;
+	color: #c4b8a2;
+	font-size: 12px;
+	text-decoration: none;
+}
+.mobile-contact-bar a.mobile-contact-bar__call {
+	background-color: #e39e48;
+	color: #1f1f1f;
+	font-weight: 700;
+}
+.mobile-contact-bar svg {
+	width: 24px;
+	height: 24px;
+	font-size: 24px;
+}
+
+/* Панель не повинна закривати низ сторінки, а перший екран рахується без неї */
+@media (max-width: 991.98px) {
+	footer {
+		padding-bottom: var(--contact-bar-height);
+	}
+	.first-screen {
+		min-height: calc(100vh - var(--contact-bar-height));
+		min-height: calc(100svh - var(--contact-bar-height));
+	}
+}
+
+@media (min-width: 992px) {
+	.mobile-contact-bar {
+		display: none;
+	}
+}

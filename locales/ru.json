@@ -70,7 +70,9 @@
         "routeLink": "Проложить маршрут в Google Maps",
         "videoLabel": "Видеообзор EcoHouse Strieva",
         "videoFallback": "Ваш браузер не поддерживает видео.",
-        "ogImageAlt": "A-frame дом EcoHouse Strieva с закарпатским чаном и зоной для костра"
+        "ogImageAlt": "A-frame дом EcoHouse Strieva с закарпатским чаном и зоной для костра",
+        "callLabel": "Позвонить",
+        "quickContactLabel": "Быстрая связь"
     },
     "form": {
         "placeholder": "+38 097 017 37 37",

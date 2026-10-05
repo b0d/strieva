@@ -70,7 +70,9 @@
         "routeLink": "Прокласти маршрут у Google Maps",
         "videoLabel": "Відеоогляд EcoHouse Strieva",
         "videoFallback": "Ваш браузер не підтримує відео.",
-        "ogImageAlt": "A-frame будинок EcoHouse Strieva із закарпатським чаном і зоною для багаття"
+        "ogImageAlt": "A-frame будинок EcoHouse Strieva із закарпатським чаном і зоною для багаття",
+        "callLabel": "Подзвонити",
+        "quickContactLabel": "Швидкий зв'язок"
     },
     "form": {
         "placeholder": "+38 097 017 37 37",

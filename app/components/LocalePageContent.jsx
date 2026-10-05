@@ -8,6 +8,7 @@ import Form from "./Form";
 import Map from "./Map";
 import Accordion from "./Accordion";
 import Footer from "./Footer";
+import MobileContactBar from "./MobileContactBar";
 import StructuredData from "./StructuredData";
 import { GOOGLE_REVIEWS_URL } from "@/lib/constants";
 import { GALLERY_IMAGES } from "@/lib/gallery";
@@ -122,6 +123,7 @@ export default function LocalePageContent({ locale, messages = {} }) {
 				</section>
 			</main>
 			<Footer lng={locale} messages={messages} />
+			<MobileContactBar messages={messages} />
 		</>
 	);
 }
