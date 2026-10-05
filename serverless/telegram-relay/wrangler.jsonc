@@ -1,0 +1,36 @@
+{
+	"name": "strieva-telegram-relay",
+	"main": "src/index.js",
+	"compatibility_date": "2026-10-05",
+	"compatibility_flags": ["nodejs_compat"],
+	"workers_dev": true,
+
+	"observability": {
+		"enabled": true,
+		"logs": {
+			"head_sampling_rate": 1
+		}
+	},
+
+	// Сторінки, з яких дозволено надсилати форму (localhost — для npm run dev)
+	"vars": {
+		"ALLOWED_ORIGINS": "https://strieva.com,https://www.strieva.com,http://localhost:3000"
+	},
+
+	// Значення задаються командою `wrangler secret put`, у репозиторії їх немає
+	"secrets": {
+		"required": ["TELEGRAM_BOT_TOKEN", "TELEGRAM_CHAT_ID"]
+	},
+
+	// Не більше 3 заявок на хвилину з однієї IP-адреси
+	"ratelimits": [
+		{
+			"name": "LEAD_LIMITER",
+			"namespace_id": "1001",
+			"simple": {
+				"limit": 3,
+				"period": 60
+			}
+		}
+	]
+}
