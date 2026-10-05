@@ -6,7 +6,8 @@ header {
 header nav {
 	justify-content: center;
 }
-header nav a {
+header nav a,
+footer a {
 	color: #c4b8a2;
 	text-decoration: none;
 	font-size: 21px;
@@ -60,9 +61,6 @@ nav ul {
 }
 
 @media (min-width: 576px) {
-	.header-menu ul li:nth-child(2) a {
-		font-size: 36px;
-	}
 	nav ul {
 		flex-direction: column;
 	}

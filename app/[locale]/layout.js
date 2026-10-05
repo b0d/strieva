@@ -1,49 +1,45 @@
-import WhereAreWe from "../components/WhereAreWe"
-import { NextIntlClientProvider } from 'next-intl';
-import { GoogleAnalytics } from "@next/third-parties/google";
 import { notFound } from 'next/navigation';
-import { routing } from '../../i18n/routing';
-import { getMessages } from 'next-intl/server';
+import { GoogleAnalytics } from '@next/third-parties/google';
+import { SUPPORTED_LOCALES, SITE_URL } from '@/lib/constants';
 
+export function generateStaticParams() {
+	return SUPPORTED_LOCALES.filter(locale => locale !== 'uk').map((locale) => ({ locale }));
+}
+
+export async function generateMetadata({ params }) {
+	const resolvedParams = await params;
+	const locale = resolvedParams?.locale;
+
+	if (!SUPPORTED_LOCALES.includes(locale)) {
+		notFound();
+	}
+
+	return {
+		metadataBase: new URL(SITE_URL),
+		alternates: {
+			canonical: `/${locale}`,
+			languages: {
+				uk: '/',
+				en: '/en',
+				ru: '/ru',
+				'x-default': '/',
+			},
+		},
+	};
+}
 
 export default async function LocaleLayout({ children, params }) {
-  const { locale } = await params; // Отримуємо поточну локаль
-  if (!routing.locales.includes(locale)) {
-    notFound();
-  }
-  const messages = await getMessages(locale);
-  return (
-    <html lang={locale}>
-      <link
-        rel='icon'
-        type='image/png'
-        href='/favicon-96x96.png'
-        sizes='96x96'
-      />
-      <link rel='icon' type='image/svg+xml' href='/favicon.svg' />
-      <link rel='shortcut icon' href='/favicon.ico' />
-      <link
-        rel='apple-touch-icon'
-        sizes='180x180'
-        href='/apple-touch-icon.png'
-      />
-      <meta name='apple-mobile-web-app-title' content='Strieva.com' />
-      <link rel='manifest' href='/site.webmanifest' />
+	const resolvedParams = await params;
+	const locale = resolvedParams?.locale;
 
+	if (!SUPPORTED_LOCALES.includes(locale)) {
+		notFound();
+	}
 
-      <link rel='canonical' href="https://strieva.com" />
-
-
-      <link
-        rel='alternate'
-        hrefLang='x-default'
-        href="https://strieva.com"
-      />
-
-
-      <GoogleAnalytics gaId='G-LQWCGN68EM' />
-      <body>
-        <NextIntlClientProvider locale={locale} messages={messages}>{children}</NextIntlClientProvider></body>
-    </html>
-  );
+	return (
+		<>
+			<GoogleAnalytics gaId='G-LQWCGN68EM' />
+			{children}
+		</>
+	);
 }

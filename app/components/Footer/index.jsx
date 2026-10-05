@@ -7,41 +7,36 @@ import YouTubeIcon from "@mui/icons-material/YouTube";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import TikTok from "../Svg/tiktok";
 import ViberAppIcon from "../Svg/viber";
-export default function Footer({ lng }) {
+export default function Footer({ lng, messages = {} }) {
+	const t = messages?.HomePage;
 	return (
 		<footer className='d-flex flex-wrap justify-content-between pt-4 align-items-center'>
 			<div className='col-12 col-md-12 col-lg-9'>
 				<ul className='footer-contacts p-0 m-0 list-unstyled d-flex flex-wrap justify-content-around'>
 					<li>
-						<a href='https://g.co/kgs/bCGmF1Y' className='me-3 te-color'>
-							<RoomOutlinedIcon
-								className='me-1 te-color'
-								sx={{ fontSize: 28 }}
-							/>
-							с. Стриєва, вул. Перемоги 37
+						<a href='https://g.co/kgs/bCGmF1Y' className='me-3 '>
+							<RoomOutlinedIcon className='me-1 ' sx={{ fontSize: 28 }} />
+							{t.address || "Адреса"}
 						</a>
 					</li>
 					<li>
-						<a href='tel:+380970173737' className='me-3 te-color'>
-							<LocalPhoneOutlinedIcon
-								className='me-2 te-color'
-								sx={{ fontSize: 28 }}
-							/>
+						<a href='tel:+380970173737' className='me-3 '>
+							<LocalPhoneOutlinedIcon className='me-2 ' sx={{ fontSize: 28 }} />
 							<span>+38-097-017-37-37</span>
 						</a>
 					</li>
 					<li>
-						<a href='https://wa.me/380970173737' className='me-3 te-color'>
+						<a href='https://wa.me/380970173737' className='me-3 '>
 							<WhatsAppIcon sx={{ fontSize: 28 }} /> WhatsApp
 						</a>
 					</li>
 					<li>
-						<a href='https://t.me/@Eco_House_Strieva' className='me-3 te-color'>
+						<a href='https://t.me/@Eco_House_Strieva' className='me-3 '>
 							<TelegramIcon sx={{ fontSize: 28 }} /> Telegram
 						</a>
 					</li>
 					<li>
-						<a href='viber://add?number=380970173737' className='te-color'>
+						<a href='viber://add?number=380970173737'>
 							<ViberAppIcon sx={{ fontSize: 28 }} /> Viber
 						</a>
 					</li>

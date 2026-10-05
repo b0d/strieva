@@ -3,14 +3,25 @@
 	margin: 0;
 	padding: 0;
 }
-@font-face {
-	font-family: "Mulish";
-	src: url("../../public/fonts/Mulish-Regular.ttf") format("ttf");
-}
+
 @font-face {
 	font-family: "Comfortaa";
-	src: url("../../public/fonts/Comfortaa-VariableFont_wght.ttf") format("ttf");
+	src: url("/fonts/Comfortaa.woff2") format("woff2"),
+		url("/fonts/Comfortaa.woff") format("woff"),
+		url("/fonts/Comfortaa.ttf") format("truetype");
+	font-weight: 400;
+	font-style: normal;
 }
+
+@font-face {
+	font-family: "Mulish";
+	src: url("/fonts/Mulish.woff2") format("woff2"),
+		url("/fonts/Mulish.woff") format("woff"),
+		url("/fonts/Mulish.ttf") format("truetype");
+	font-weight: 400;
+	font-style: normal;
+}
+
 html,
 body {
 	width: 100%;

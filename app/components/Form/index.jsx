@@ -1,112 +1,142 @@
 "use client";
 import "./index.css";
-import { useState, useEffect } from "react";
+import { useMemo, useState, useCallback } from "react";
 
-export default function Form({ lng, content }) {
+const TELEGRAM_ENDPOINT = process.env.NEXT_PUBLIC_TELEGRAM_FUNCTION_URL || "";
+const PHONE_PATTERN = /^[\d\s\-\+\(\)]+$/;
+
+function isValidPhone(phone) {
+	if (!phone || phone.length < 10) return false;
+	return PHONE_PATTERN.test(phone);
+}
+
+export default function Form({ messages = {} }) {
+	const homeCopy = messages.HomePage || {};
+	const formCopy = messages.form || {};
+
 	const [tel, setTel] = useState("");
-	const [status, setStatus] = useState("");
-	const [formData, setFormData] = useState({
-		name: "",
-	});
-	const [isClient, setIsClient] = useState(false);
-	useEffect(() => {
-		setIsClient(true);
+	const [status, setStatus] = useState({ type: null, message: "" });
+	const [isSubmitting, setIsSubmitting] = useState(false);
+
+	const endpoint = formCopy.endpoint || TELEGRAM_ENDPOINT;
+	const placeholder =
+		formCopy.placeholder || homeCopy.placeholder || "+38 097 017 37 37";
+
+	const buttonLabel = useMemo(() => {
+		if (isSubmitting) {
+			return formCopy.buttonPending || homeCopy.submit || "Sending...";
+		}
+
+		return formCopy.button || homeCopy.submit || "Send";
+	}, [formCopy.button, formCopy.buttonPending, homeCopy.submit, isSubmitting]);
+
+	const setFeedback = useCallback((type, message) => {
+		setStatus({
+			type,
+			message,
+		});
 	}, []);
-	const handleInput = (e) => {
-		const fieldName = e.target.name;
-		const fieldValue = e.target.value;
 
-		setFormData((prevState) => ({
-			...prevState,
-			[fieldName]: fieldValue,
-		}));
-	};
-
-	const submitForm = (e) => {
+	const handleSubmit = useCallback(async (e) => {
 		e.preventDefault();
 
-		const formURL = e.target.action;
-		const data = new FormData();
+		const trimmedTel = tel.trim();
 
-		Object.entries(formData).forEach(([key, value]) => {
-			data.append(key, value);
-		});
+		if (!trimmedTel) {
+			setFeedback("error", formCopy.validation || homeCopy.enterYourNumber);
+			return;
+		}
 
-		fetch(formURL, {
-			method: "POST",
-			body: data,
-			headers: {
-				accept: "application/json",
-			},
-		}).then(() => {
-			setFormData({
-				name: "",
-			});
-		});
-	};
+		if (!isValidPhone(trimmedTel)) {
+			setFeedback("error", formCopy.invalidPhone || "Please enter a valid phone number.");
+			return;
+		}
 
-	const handleSubmit = async (e) => {
-		e.preventDefault();
-
-		if (!tel.trim()) {
-			setStatus("Будь ласка, введіть номер телефону");
+		if (!endpoint) {
+			setFeedback("error", formCopy.endpointMissing || "Service unavailable");
 			return;
 		}
 
 		try {
-			const response = await fetch("/api/telegram/send-message", {
+			setIsSubmitting(true);
+			setFeedback(null, "");
+
+			const response = await fetch(endpoint, {
 				method: "POST",
 				headers: {
 					"Content-Type": "application/json",
 				},
-				body: JSON.stringify({
-					tel,
-				}),
+				body: JSON.stringify({ tel: trimmedTel }),
 			});
 
-			const result = await response.json();
+			const result = await response.json().catch(() => ({}));
 
-			if (result.success) {
-				setStatus("Повідомлення надіслано!");
+			if (response.ok && result.success) {
+				setFeedback(
+					"success",
+					formCopy.success || "Thank you! We will reach out shortly.",
+				);
 				setTel("");
-			} else {
-				throw new Error(result.error || "Помилка відправки!");
+				return;
 			}
+
+			throw new Error(
+				result?.message ||
+					formCopy.error ||
+					"Could not deliver your request. Please try again.",
+			);
 		} catch (error) {
-			setStatus(`Помилка: ${error.message}`);
+			setFeedback("error", error.message);
+		} finally {
+			setIsSubmitting(false);
 		}
-	};
+	}, [tel, endpoint, formCopy, homeCopy, setFeedback]);
 
 	return (
 		<aside className='form-block col-12 col-sm-12 col-lg-10'>
-			{isClient && (
-				<form
-					method='POST'
-					onSubmit={handleSubmit}
-					className='d-flex justify-content-center flex-column'
-				>
-					<div className='d-flex flex-column'>
-						<label className='mb-1'>Введіть ваш номер телефону:</label>
-						<input
-							type='tel'
-							name='tel'
-							id='tel'
-							required
-							placeholder='+38 096 033 66 36'
-							value={tel}
-							onChange={(e) => setTel(e.target.value)}
-						/>
-					</div>
+			<form
+				method='POST'
+				onSubmit={handleSubmit}
+				className='d-flex justify-content-center flex-column'
+				noValidate
+			>
+				<div className='d-flex flex-column'>
+					<label htmlFor='tel' className='mb-1'>
+						{homeCopy.enterYourNumber}
+					</label>
+					<input
+						type='tel'
+						name='tel'
+						id='tel'
+						required
+						placeholder={placeholder}
+						value={tel}
+						onChange={(e) => setTel(e.target.value)}
+						aria-label={homeCopy.enterYourNumber}
+						aria-required='true'
+						aria-invalid={status.type === 'error' ? 'true' : 'false'}
+						disabled={isSubmitting}
+					/>
+				</div>
 
-					<button type='submit' className='justify-content-center'>
-						Надіслати
-					</button>
-				</form>
+				<button
+					type='submit'
+					className='justify-content-center'
+					disabled={isSubmitting}
+					aria-label={buttonLabel}
+				>
+					{buttonLabel}
+				</button>
+			</form>
+
+			{status.message && (
+				<div className='col-12 text-center' aria-live='polite' role={status.type === 'error' ? 'alert' : 'status'}>
+					<br />
+					<p className={status.type === "error" ? "text-danger" : "text-success"}>
+						{status.message}
+					</p>
+				</div>
 			)}
-			<div className='col-12 text-center'>
-				<br />
-				{status && <p>{status}</p>}
-			</div>
 		</aside>
 	);
 }

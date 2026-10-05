@@ -2,7 +2,7 @@
 import "./index.css";
 import { useState, useEffect } from "react";
 
-export default function TopMenu({ lng }) {
+export default function TopMenu({ lng, messages }) {
 	const [hamburger, setHamburger] = useState(false);
 	const [isClient, setIsClient] = useState(false);
 	function handleClick() {
@@ -11,6 +11,8 @@ export default function TopMenu({ lng }) {
 	useEffect(() => {
 		setIsClient(true);
 	}, []);
+
+	const t = messages?.HomePage;
 	return (
 		<nav
 			className='d-flex flex-wrap p-3 align-items-center'
@@ -35,7 +37,7 @@ export default function TopMenu({ lng }) {
 						className='d-flex border-light px-3 rounded-pill'
 						onClick={() => setHamburger(false)}
 					>
-						Ціни
+						{t.menu1}
 					</a>
 				</li>
 				<li className='m-2'>
@@ -44,7 +46,7 @@ export default function TopMenu({ lng }) {
 						className='d-flex border-light px-3 rounded-pill'
 						onClick={() => setHamburger(false)}
 					>
-						Зручності
+						{t.menu2}
 					</a>
 				</li>
 
@@ -54,7 +56,7 @@ export default function TopMenu({ lng }) {
 						className='d-flex border-light px-3 rounded-pill'
 						onClick={() => setHamburger(false)}
 					>
-						Фото
+						{t.menu3}
 					</a>
 				</li>
 
@@ -64,7 +66,7 @@ export default function TopMenu({ lng }) {
 						className='d-flex border-light px-3 rounded-pill'
 						onClick={() => setHamburger(false)}
 					>
-						Як доїхати
+						{t.menu4}
 					</a>
 				</li>
 
@@ -74,7 +76,7 @@ export default function TopMenu({ lng }) {
 						className='d-flex border-light px-3 rounded-pill'
 						onClick={() => setHamburger(false)}
 					>
-						Поширені питання
+						{t.menu5}
 					</a>
 				</li>
 			</ul>
