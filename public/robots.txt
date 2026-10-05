@@ -1,6 +1,4 @@
-
-
 User-agent: *
 Allow: /
-Host: https://strieva.com/
+
 Sitemap: https://strieva.com/sitemap.xml

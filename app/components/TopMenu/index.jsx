@@ -1,34 +1,33 @@
 "use client";
 import "./index.css";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 export default function TopMenu({ lng, messages }) {
 	const [hamburger, setHamburger] = useState(false);
-	const [isClient, setIsClient] = useState(false);
 	function handleClick() {
 		setHamburger(!hamburger);
 	}
-	useEffect(() => {
-		setIsClient(true);
-	}, []);
 
 	const t = messages?.HomePage;
 	return (
 		<nav
 			className='d-flex flex-wrap p-3 align-items-center'
-			aria-labelledby='mainnavheader'
+			aria-label={t.menuLabel}
 		>
-			{isClient && (
-				<button className='mainmenu-hamburger' onClick={handleClick}>
-					☰
-				</button>
-			)}
+			<button
+				type='button'
+				className='mainmenu-hamburger'
+				onClick={handleClick}
+				aria-label={t.menuLabel}
+				aria-expanded={hamburger}
+				aria-controls='appmenu'
+			>
+				☰
+			</button>
 			<ul
 				className={`mainmenu w-100 p-0 m-0 list-unstyled  flex-wrap justify-content-between ${
-					hamburger && isClient ? "menu-open" : ""
+					hamburger ? "menu-open" : ""
 				}`}
-				role='menubar'
-				aria-label='functions'
 				id='appmenu'
 			>
 				<li className='m-2'>

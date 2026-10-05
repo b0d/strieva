@@ -1,24 +1,26 @@
-import LocalPhoneOutlinedIcon from "@mui/icons-material/LocalPhoneOutlined";
-import RoomOutlinedIcon from "@mui/icons-material/RoomOutlined";
-import TelegramIcon from "@mui/icons-material/Telegram";
-import WhatsAppIcon from "@mui/icons-material/WhatsApp";
+import {
+	PhoneIcon,
+	RoomIcon,
+	TelegramIcon,
+	WhatsAppIcon,
+} from "../Svg/icons";
 import ViberAppIcon from "../Svg/viber";
 import LanguageSwitcher from "../LanguageSwitcher";
 import "./index.css";
 import TopMenu from "../TopMenu";
 import Image from "next/image";
+import { MAPS_PLACE_URL, SOCIAL_LINKS, getLocalePath } from "@/lib/constants";
 
 export default function Header({ lng, messages = {} }) {
 	const t = messages?.HomePage;
-	const href = lng === "uk" || lng === "" ? "/" : `/${lng}`;
 
 	return (
 		<header className='d-flex flex-wrap justify-content-between p-3 align-items-center'>
 			<div className='logo-header-block col-12 col-md-12 col-lg-2'>
-				<a href={href} aria-label="Home">
+				<a href={getLocalePath(lng)}>
 					<Image
 						src='/imgs/logo.webp'
-						alt={t?.logoAlt || 'Strieva Eco House'}
+						alt={t?.logoAlt || 'EcoHouse Strieva'}
 						width={150}
 						height={150}
 						priority={true}
@@ -30,35 +32,35 @@ export default function Header({ lng, messages = {} }) {
 				<TopMenu lng={lng} messages={messages} />
 			</div>
 
-			<nav className='header-menu d-flex flex-wrap col-12 col-md-12 col-lg-4 col-xl-4'>
+			<nav
+				className='header-menu d-flex flex-wrap col-12 col-md-12 col-lg-4 col-xl-4'
+				aria-label={t.contactsLabel}
+			>
 				<div className="col-12 col-lg-12 mb-2 d-flex flex-wrap flex-row align-items-center justify-content-center justify-content-xl-end">
 					<LanguageSwitcher currentLocale={lng} />
 				</div>
 				<ul className='p-0 m-0 list-unstyled text-start'>
 					<li>
-						<a href='https://g.co/kgs/bCGmF1Y' aria-label="View on Google Maps">
-							<RoomOutlinedIcon style={{ fontSize: 36 }} className='me-1' />
+						<a href={MAPS_PLACE_URL}>
+							<RoomIcon size={36} className='me-1' />
 							{t.address || "Адреса"}
 						</a>
 					</li>
 					<li>
-						<a href='tel:+380970173737' aria-label="Call us" className="h3">
-							<LocalPhoneOutlinedIcon
-								style={{ fontSize: 36 }}
-								className='me-2'
-							/>
+						<a href='tel:+380970173737' className="h3">
+							<PhoneIcon size={36} className='me-2' />
 							<span>+38-097-017-37-37</span>
 						</a>
 					</li>
 					<li>
-						<a href='https://wa.me/380970173737' className='me-3' aria-label="WhatsApp">
-							<WhatsAppIcon style={{ fontSize: 28 }} /> WhatsApp
+						<a href='https://wa.me/380970173737' className='me-3'>
+							<WhatsAppIcon size={28} /> WhatsApp
 						</a>
-						<a href='https://t.me/Eco_House_Strieva' className='me-3' aria-label="Telegram">
-							<TelegramIcon style={{ fontSize: 28 }} /> Telegram
+						<a href={SOCIAL_LINKS.telegram} className='me-3'>
+							<TelegramIcon size={28} /> Telegram
 						</a>
-						<a href='viber://add?number=380970173737' aria-label="Viber">
-							<ViberAppIcon style={{ fontSize: 28 }} /> Viber
+						<a href='viber://chat?number=%2B380970173737'>
+							<ViberAppIcon /> Viber
 						</a>
 					</li>
 				</ul>

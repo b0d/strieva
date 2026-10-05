@@ -1,6 +1,7 @@
 "use client";
 import "./index.css";
-import { useMemo, useState, useCallback } from "react";
+import { useMemo, useState, useCallback, useId } from "react";
+import { sendGAEvent } from "@next/third-parties/google";
 
 const TELEGRAM_ENDPOINT = process.env.NEXT_PUBLIC_TELEGRAM_FUNCTION_URL || "";
 const PHONE_PATTERN = /^[\d\s\-\+\(\)]+$/;
@@ -10,10 +11,11 @@ function isValidPhone(phone) {
 	return PHONE_PATTERN.test(phone);
 }
 
-export default function Form({ messages = {} }) {
+export default function Form({ messages = {}, locale = "", location = "" }) {
 	const homeCopy = messages.HomePage || {};
 	const formCopy = messages.form || {};
 
+	const inputId = useId();
 	const [tel, setTel] = useState("");
 	const [status, setStatus] = useState({ type: null, message: "" });
 	const [isSubmitting, setIsSubmitting] = useState(false);
@@ -66,7 +68,7 @@ export default function Form({ messages = {} }) {
 				headers: {
 					"Content-Type": "application/json",
 				},
-				body: JSON.stringify({ tel: trimmedTel }),
+				body: JSON.stringify({ tel: trimmedTel, locale, location }),
 			});
 
 			const result = await response.json().catch(() => ({}));
@@ -77,20 +79,22 @@ export default function Form({ messages = {} }) {
 					formCopy.success || "Thank you! We will reach out shortly.",
 				);
 				setTel("");
+				sendGAEvent("event", "generate_lead", { form_location: location });
 				return;
 			}
 
-			throw new Error(
-				result?.message ||
-					formCopy.error ||
-					"Could not deliver your request. Please try again.",
-			);
+			throw new Error("Lead relay rejected the request");
 		} catch (error) {
-			setFeedback("error", error.message);
+			// Текст для відвідувача завжди з перекладів, технічна причина — лише в консолі
+			console.error(error);
+			setFeedback(
+				"error",
+				formCopy.error || "Could not deliver your request. Please try again.",
+			);
 		} finally {
 			setIsSubmitting(false);
 		}
-	}, [tel, endpoint, formCopy, homeCopy, setFeedback]);
+	}, [tel, endpoint, locale, location, formCopy, homeCopy, setFeedback]);
 
 	return (
 		<aside className='form-block col-12 col-sm-12 col-lg-10'>
@@ -101,18 +105,19 @@ export default function Form({ messages = {} }) {
 				noValidate
 			>
 				<div className='d-flex flex-column'>
-					<label htmlFor='tel' className='mb-1'>
+					<label htmlFor={inputId} className='mb-1'>
 						{homeCopy.enterYourNumber}
 					</label>
 					<input
 						type='tel'
 						name='tel'
-						id='tel'
+						id={inputId}
 						required
+						autoComplete='tel'
+						inputMode='tel'
 						placeholder={placeholder}
 						value={tel}
 						onChange={(e) => setTel(e.target.value)}
-						aria-label={homeCopy.enterYourNumber}
 						aria-required='true'
 						aria-invalid={status.type === 'error' ? 'true' : 'false'}
 						disabled={isSubmitting}
@@ -123,7 +128,6 @@ export default function Form({ messages = {} }) {
 					type='submit'
 					className='justify-content-center'
 					disabled={isSubmitting}
-					aria-label={buttonLabel}
 				>
 					{buttonLabel}
 				</button>

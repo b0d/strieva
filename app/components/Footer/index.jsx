@@ -1,12 +1,16 @@
 import "./index.css";
-import LocalPhoneOutlinedIcon from "@mui/icons-material/LocalPhoneOutlined";
-import RoomOutlinedIcon from "@mui/icons-material/RoomOutlined";
-import TelegramIcon from "@mui/icons-material/Telegram";
-import WhatsAppIcon from "@mui/icons-material/WhatsApp";
-import YouTubeIcon from "@mui/icons-material/YouTube";
-import InstagramIcon from "@mui/icons-material/Instagram";
+import {
+	PhoneIcon,
+	RoomIcon,
+	TelegramIcon,
+	WhatsAppIcon,
+	YouTubeIcon,
+	InstagramIcon,
+} from "../Svg/icons";
 import TikTok from "../Svg/tiktok";
 import ViberAppIcon from "../Svg/viber";
+import { MAPS_PLACE_URL, SOCIAL_LINKS } from "@/lib/constants";
+
 export default function Footer({ lng, messages = {} }) {
 	const t = messages?.HomePage;
 	return (
@@ -14,30 +18,30 @@ export default function Footer({ lng, messages = {} }) {
 			<div className='col-12 col-md-12 col-lg-9'>
 				<ul className='footer-contacts p-0 m-0 list-unstyled d-flex flex-wrap justify-content-around'>
 					<li>
-						<a href='https://g.co/kgs/bCGmF1Y' className='me-3 '>
-							<RoomOutlinedIcon className='me-1 ' sx={{ fontSize: 28 }} />
+						<a href={MAPS_PLACE_URL} className='me-3 '>
+							<RoomIcon className='me-1 ' size={28} />
 							{t.address || "Адреса"}
 						</a>
 					</li>
 					<li>
 						<a href='tel:+380970173737' className='me-3 '>
-							<LocalPhoneOutlinedIcon className='me-2 ' sx={{ fontSize: 28 }} />
+							<PhoneIcon className='me-2 ' size={28} />
 							<span>+38-097-017-37-37</span>
 						</a>
 					</li>
 					<li>
 						<a href='https://wa.me/380970173737' className='me-3 '>
-							<WhatsAppIcon sx={{ fontSize: 28 }} /> WhatsApp
+							<WhatsAppIcon size={28} /> WhatsApp
 						</a>
 					</li>
 					<li>
-						<a href='https://t.me/@Eco_House_Strieva' className='me-3 '>
-							<TelegramIcon sx={{ fontSize: 28 }} /> Telegram
+						<a href={SOCIAL_LINKS.telegram} className='me-3 '>
+							<TelegramIcon size={28} /> Telegram
 						</a>
 					</li>
 					<li>
-						<a href='viber://add?number=380970173737'>
-							<ViberAppIcon sx={{ fontSize: 28 }} /> Viber
+						<a href='viber://chat?number=%2B380970173737'>
+							<ViberAppIcon /> Viber
 						</a>
 					</li>
 				</ul>
@@ -46,31 +50,26 @@ export default function Footer({ lng, messages = {} }) {
 			<div className='col-12 col-md-12 col-lg-3 pt-3'>
 				<ul className='footer-social list-unstyled d-flex justify-content-around flex-wrap'>
 					<li>
-						<a
-							href='https://www.tiktok.com/@eco_house_strieva'
-							className='te-color'
-						>
+						<a href={SOCIAL_LINKS.tiktok} className='te-color' aria-label='TikTok'>
 							<TikTok
 								className='me-2 w-10 te-color'
-								sx={{ fontSize: 28 }}
 								style={{ width: 28, height: 28 }}
+								aria-hidden='true'
 							/>
 						</a>
 					</li>
 					<li>
-						<a
-							href='https://www.youtube.com/@EcoHouse-Strieva'
-							className='te-color'
-						>
-							<YouTubeIcon className='me-2 te-color' sx={{ fontSize: 28 }} />
+						<a href={SOCIAL_LINKS.youtube} className='te-color' aria-label='YouTube'>
+							<YouTubeIcon className='me-2 te-color' size={28} />
 						</a>
 					</li>
 					<li>
 						<a
-							href='https://www.instagram.com/Eco_house_strieva'
+							href={SOCIAL_LINKS.instagram}
 							className='te-color'
+							aria-label='Instagram'
 						>
-							<InstagramIcon className='me-2' sx={{ fontSize: 28 }} />
+							<InstagramIcon className='me-2' size={28} />
 						</a>
 					</li>
 				</ul>

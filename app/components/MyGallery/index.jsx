@@ -9,7 +9,7 @@ import "swiper/css/autoplay";
 import "./index.css";
 import { Navigation, Autoplay, FreeMode, Pagination } from "swiper/modules";
 
-const MyGallery = ({ imgs }) => {
+const MyGallery = ({ imgs, label }) => {
 	const swiperConfig = useMemo(
 		() => ({
 			autoHeight: true,
@@ -43,17 +43,16 @@ const MyGallery = ({ imgs }) => {
 			{...swiperConfig}
 			modules={[FreeMode, Autoplay, Pagination, Navigation]}
 			className='mySwiper'
-			aria-label='Photo gallery'
+			aria-label={label}
 		>
-			{imgs.map(({ src, alt }, index) => (
+			{imgs.map(({ src, alt, width, height }, index) => (
 				<SwiperSlide key={index} className='col-12'>
 					<Image
 						src={src}
 						alt={alt}
-						width={600}
-						height={400}
+						width={width}
+						height={height}
 						style={{ width: '100%', height: 'auto' }}
-						sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
 					/>
 				</SwiperSlide>
 			))}

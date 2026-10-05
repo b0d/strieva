@@ -1,17 +1,30 @@
-import { SITE_URL } from '@/lib/constants';
+import {
+	SITE_URL,
+	SITE_NAME,
+	OG_IMAGE,
+	GEO,
+	MAPS_PLACE_URL,
+	SOCIAL_LINKS,
+	getLocalePath,
+} from '@/lib/constants';
 
-export default function StructuredData({ locale, messages = {} }) {
+export default function StructuredData({ locale, messages = {}, qa = [] }) {
 	const home = messages?.HomePage || {};
-	const BASE_URL = SITE_URL;
-	const localePath = locale === 'uk' ? '' : `/${locale}`;
-	const pageUrl = `${BASE_URL}${localePath}`;
+	const pageUrl = `${SITE_URL}${getLocalePath(locale)}`;
 
-	// Структуровані дані для LodgingBusiness
+	// Сайт і заклад мають однакові @id в усіх мовних версіях: це одна сутність
+	const websiteSchema = {
+		'@type': 'WebSite',
+		'@id': `${SITE_URL}/#website`,
+		url: `${SITE_URL}/`,
+		name: SITE_NAME,
+		inLanguage: locale,
+	};
+
 	const lodgingBusinessSchema = {
-		'@context': 'https://schema.org',
 		'@type': 'LodgingBusiness',
-		'@id': `${pageUrl}#lodging`,
-		name: 'EcoHouse Strieva',
+		'@id': `${SITE_URL}/#lodging`,
+		name: SITE_NAME,
 		description: home.description || home.h2p1,
 		url: pageUrl,
 		telephone: '+380970173737',
@@ -25,13 +38,14 @@ export default function StructuredData({ locale, messages = {} }) {
 		},
 		geo: {
 			'@type': 'GeoCoordinates',
-			latitude: 50.5198398,
-			longitude: 27.6271339,
+			...GEO,
 		},
+		hasMap: MAPS_PLACE_URL,
+		sameAs: Object.values(SOCIAL_LINKS),
 		image: [
-			`${BASE_URL}/imgs/rent-house-Strieva.webp`,
-			`${BASE_URL}/imgs/first-screen.webp`,
-			`${BASE_URL}/imgs/strieva-ecoHouse.webp`,
+			`${SITE_URL}${OG_IMAGE}`,
+			`${SITE_URL}/imgs/rent-house-Strieva.webp`,
+			`${SITE_URL}/imgs/bg.webp`,
 		],
 		priceRange: '$$',
 		amenityFeature: [
@@ -65,68 +79,43 @@ export default function StructuredData({ locale, messages = {} }) {
 			'@type': 'QuantitativeValue',
 			value: 1,
 		},
-		occupancy: {
-			'@type': 'QuantitativeValue',
-			maxValue: 4,
-			minValue: 2,
-		},
+		petsAllowed: true,
 		checkinTime: '15:00',
 		checkoutTime: '11:00',
 		paymentAccepted: 'Cash, Card',
 		currenciesAccepted: 'UAH',
 	};
 
-	// Структуровані дані для FAQPage
+	// FAQ будується з того самого списку, що й видимий акордеон
 	const faqSchema = {
-		'@context': 'https://schema.org',
 		'@type': 'FAQPage',
-		mainEntity: Array.from({ length: 10 }, (_, i) => {
-			const q = messages?.questions?.[`q${i}`];
-			const a = messages?.questions?.[`a${i}`];
-			if (!q || !a) return null;
-			return {
-				'@type': 'Question',
-				name: q,
-				acceptedAnswer: {
-					'@type': 'Answer',
-					text: a,
-				},
-			};
-		}).filter(Boolean),
+		'@id': `${pageUrl}#faq`,
+		inLanguage: locale,
+		mainEntity: qa.map(({ question, answer }) => ({
+			'@type': 'Question',
+			name: question,
+			acceptedAnswer: {
+				'@type': 'Answer',
+				text: answer,
+			},
+		})),
 	};
 
-	// Структуровані дані для BreadcrumbList
-	const breadcrumbSchema = {
+	const graph = {
 		'@context': 'https://schema.org',
-		'@type': 'BreadcrumbList',
-		itemListElement: [
-			{
-				'@type': 'ListItem',
-				position: 1,
-				name: 'Home',
-				item: BASE_URL,
-			},
+		'@graph': [
+			websiteSchema,
+			lodgingBusinessSchema,
+			...(qa.length > 0 ? [faqSchema] : []),
 		],
 	};
 
 	return (
-		<>
-			<script
-				type="application/ld+json"
-				dangerouslySetInnerHTML={{ __html: JSON.stringify(lodgingBusinessSchema) }}
-			/>
-			{faqSchema.mainEntity.length > 0 && (
-				<script
-					type="application/ld+json"
-					dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-				/>
-			)}
-			<script
-				type="application/ld+json"
-				dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
-			/>
-		</>
+		<script
+			type="application/ld+json"
+			dangerouslySetInnerHTML={{
+				__html: JSON.stringify(graph).replace(/</g, '\\u003c'),
+			}}
+		/>
 	);
 }
-
-

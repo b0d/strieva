@@ -1,21 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://strieva.com/</loc>
-    <lastmod>2025-01-09T00:00:00.000Z</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
+    <lastmod>2026-10-05</lastmod>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://strieva.com/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://strieva.com/en/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://strieva.com/ru/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://strieva.com/"/>
   </url>
   <url>
-    <loc>https://strieva.com/en</loc>
-    <lastmod>2025-01-09T00:00:00.000Z</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://strieva.com/en/</loc>
+    <lastmod>2026-10-05</lastmod>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://strieva.com/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://strieva.com/en/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://strieva.com/ru/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://strieva.com/"/>
   </url>
   <url>
-    <loc>https://strieva.com/ru</loc>
-    <lastmod>2025-01-09T00:00:00.000Z</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://strieva.com/ru/</loc>
+    <lastmod>2026-10-05</lastmod>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://strieva.com/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://strieva.com/en/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://strieva.com/ru/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://strieva.com/"/>
   </url>
 </urlset>

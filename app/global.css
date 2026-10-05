@@ -4,29 +4,44 @@
 	padding: 0;
 }
 
+/* Шрифти обрізані до латиниці та кирилиці. Запасні гарнітури підігнані за метриками,
+   щоб текст не стрибав, коли основний шрифт довантажується. */
 @font-face {
 	font-family: "Comfortaa";
-	src: url("/fonts/Comfortaa.woff2") format("woff2"),
-		url("/fonts/Comfortaa.woff") format("woff"),
-		url("/fonts/Comfortaa.ttf") format("truetype");
-	font-weight: 400;
+	src: url("/fonts/Comfortaa.woff2") format("woff2");
+	font-weight: 300 700;
 	font-style: normal;
+	font-display: swap;
 }
-
+@font-face {
+	font-family: "Comfortaa Fallback";
+	src: local("Arial");
+	ascent-override: 74.6%;
+	descent-override: 19.81%;
+	line-gap-override: 0%;
+	size-adjust: 118.1%;
+}
 @font-face {
 	font-family: "Mulish";
-	src: url("/fonts/Mulish.woff2") format("woff2"),
-		url("/fonts/Mulish.woff") format("woff"),
-		url("/fonts/Mulish.ttf") format("truetype");
+	src: url("/fonts/Mulish.woff2") format("woff2");
 	font-weight: 400;
 	font-style: normal;
+	font-display: swap;
+}
+@font-face {
+	font-family: "Mulish Fallback";
+	src: local("Arial");
+	ascent-override: 95.71%;
+	descent-override: 23.81%;
+	line-gap-override: 0%;
+	size-adjust: 105%;
 }
 
 html,
 body {
 	width: 100%;
 	height: 100%;
-	font-family: "Comfortaa";
+	font-family: "Comfortaa", "Comfortaa Fallback", sans-serif;
 	background-color: #222222;
 	color: #ffffff;
 	font-size: 18px;
@@ -37,11 +52,20 @@ h3,
 h4,
 h5,
 h6 {
-	font-family: "Mulish";
+	font-family: "Mulish", "Mulish Fallback", sans-serif;
 }
 .te-color {
 	color: #e39e48;
 	fill: #e39e48;
+}
+.svg-icon {
+	display: inline-block;
+	flex-shrink: 0;
+	width: 1em;
+	height: 1em;
+	font-size: 1.5rem;
+	fill: currentColor;
+	user-select: none;
 }
 .bor-color {
 	color: #705a32;
@@ -50,7 +74,7 @@ h6 {
 	background-color: #705a32;
 }
 .like-header {
-	font-family: "Mulish";
+	font-family: "Mulish", "Mulish Fallback", sans-serif;
 	font-size: 2rem;
 }
 ul li::marker {

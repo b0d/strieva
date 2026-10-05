@@ -9,20 +9,24 @@ import Map from "./Map";
 import Accordion from "./Accordion";
 import Footer from "./Footer";
 import StructuredData from "./StructuredData";
+import { GOOGLE_REVIEWS_URL } from "@/lib/constants";
+import { GALLERY_IMAGES } from "@/lib/gallery";
 
 export default function LocalePageContent({ locale, messages = {} }) {
 	const home = messages?.HomePage || {};
 	const questionSet = messages?.questions || {};
 	const gallery = messages?.imgs || {};
 
-	const qa = Array.from({ length: 9 }, (_, i) => ({
-		question: questionSet[`q${i}`],
-		answer: questionSet[`a${i}`],
-	}));
+	// Усі пари q{i}/a{i} з перекладів: той самий список іде і в акордеон, і в розмітку FAQ
+	const qa = Object.keys(questionSet)
+		.filter((key) => /^q\d+$/.test(key) && questionSet[`a${key.slice(1)}`])
+		.map((key) => ({
+			question: questionSet[key],
+			answer: questionSet[`a${key.slice(1)}`],
+		}));
 
-	const imagesCount = 19;
-	const imgs = Array.from({ length: imagesCount }, (_, i) => ({
-		src: gallery[`imgs${i}src`],
+	const imgs = GALLERY_IMAGES.map((img, i) => ({
+		...img,
 		alt: gallery[`imgs${i}alt`],
 	}));
 
@@ -30,7 +34,7 @@ export default function LocalePageContent({ locale, messages = {} }) {
 
 	return (
 		<>
-			<StructuredData locale={locale} messages={messages} />
+			<StructuredData locale={locale} messages={messages} qa={qa} />
 			<Header lng={locale} messages={messages} />
 			<MainFirstScreen lng={locale} messages={messages} />
 			<main>
@@ -41,7 +45,7 @@ export default function LocalePageContent({ locale, messages = {} }) {
 					id="price"
 				>
 					<div className="col-12">
-						<h3>{home.h32}</h3>
+						<h2 className="h3">{home.h32}</h2>
 						<table>
 							<thead>
 								<tr>
@@ -70,35 +74,35 @@ export default function LocalePageContent({ locale, messages = {} }) {
 								</tr>
 								<tr>
 									<th scope="row">{home.tableRow6}</th>
-									<td colSpan="3">{home.tableRow6note}</td>
+									<td colSpan="2">{home.tableRow6note}</td>
 								</tr>
 							</tbody>
 						</table>
 					</div>
 
 					<div className="col-12 pt-4" id="photos">
-						<MyGallery imgs={imgs} />
+						<MyGallery imgs={imgs} label={home.menu3} />
 					</div>
 
 					<div className="col-12 d-flex flex-row flex-wrap justify-content-between pt-4">
-						<div className="col-12">{home.h33}</div>
+						<h2 className="col-12 h3">{home.h33}</h2>
 
 						<div className="col-12 col-lg-7 py-3" id="howtofind">
-							<Map />
+							<Map messages={messages} />
 						</div>
 
 						<div className="col-12 col-lg-5 d-flex flex-row flex-wrap">
 							<div className="col-12">
-								<Form messages={messages} />
+								<Form messages={messages} locale={locale} location="contacts" />
 							</div>
 
 							<div className="col-12 p-2 d-flex flex-row flex-wrap justify-content-start">
-								<a href="https://g.co/kgs/bCGmF1Y">
+								<a href={GOOGLE_REVIEWS_URL}>
 									<Image
 										src="/imgs/google.webp"
 										width={30}
 										height={30}
-										alt="Feedback"
+										alt={home.reviewsAlt}
 										className="m-3"
 									/>
 								</a>
@@ -111,8 +115,8 @@ export default function LocalePageContent({ locale, messages = {} }) {
 				</section>
 
 				<section className="container d-flex flex-row flex-wrap justify-content-between">
-					<span className="col-12 like-header p-2">{home.h34}</span>
-					<Accordion qa={qa} />
+					<h2 className="col-12 like-header p-2">{home.h34}</h2>
+					<Accordion qa={qa} label={home.menu5} />
 				</section>
 			</main>
 			<Footer lng={locale} messages={messages} />

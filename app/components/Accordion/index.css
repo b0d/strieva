@@ -17,7 +17,7 @@
 	-o-border-radius: 10px;
 }
 .tab input:checked ~ .tab__content {
-	max-height: 10rem;
+	max-height: 40rem;
 }
 
 .accordion {

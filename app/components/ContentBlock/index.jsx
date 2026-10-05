@@ -19,10 +19,10 @@ export default function ContentBlock({ lng, content, messages }) {
 					controls
 					preload='none'
 					poster='/imgs/IMG_6550.webp'
-					aria-label="EcoHouse Strieva overview video"
+					aria-label={t.videoLabel}
 				>
-					<source src='/video/Eco-house-Strieva.MOV' type='video/mp4' />
-					Ваш браузер не підтримує відео.
+					<source src='/video/eco-house-strieva.mp4' type='video/mp4' />
+					{t.videoFallback}
 				</video>
 			</div>
 		</section>

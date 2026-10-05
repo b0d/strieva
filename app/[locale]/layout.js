@@ -1,45 +1,21 @@
 import { notFound } from 'next/navigation';
-import { GoogleAnalytics } from '@next/third-parties/google';
-import { SUPPORTED_LOCALES, SITE_URL } from '@/lib/constants';
+import SiteShell from '../components/SiteShell';
+import { SUPPORTED_LOCALES, DEFAULT_LOCALE } from '@/lib/constants';
+
+export const dynamicParams = false;
 
 export function generateStaticParams() {
-	return SUPPORTED_LOCALES.filter(locale => locale !== 'uk').map((locale) => ({ locale }));
-}
-
-export async function generateMetadata({ params }) {
-	const resolvedParams = await params;
-	const locale = resolvedParams?.locale;
-
-	if (!SUPPORTED_LOCALES.includes(locale)) {
-		notFound();
-	}
-
-	return {
-		metadataBase: new URL(SITE_URL),
-		alternates: {
-			canonical: `/${locale}`,
-			languages: {
-				uk: '/',
-				en: '/en',
-				ru: '/ru',
-				'x-default': '/',
-			},
-		},
-	};
+	return SUPPORTED_LOCALES.filter((locale) => locale !== DEFAULT_LOCALE).map(
+		(locale) => ({ locale }),
+	);
 }
 
 export default async function LocaleLayout({ children, params }) {
-	const resolvedParams = await params;
-	const locale = resolvedParams?.locale;
+	const { locale } = await params;
 
 	if (!SUPPORTED_LOCALES.includes(locale)) {
 		notFound();
 	}
 
-	return (
-		<>
-			<GoogleAnalytics gaId='G-LQWCGN68EM' />
-			{children}
-		</>
-	);
+	return <SiteShell lang={locale}>{children}</SiteShell>;
 }

@@ -1,43 +1,24 @@
-"use client";
-import { useMemo, memo } from "react";
-import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
+import { MAPS_EMBED_URL, MAPS_ROUTE_URL } from "@/lib/constants";
 
-const Map = memo(() => {
-	const containerStyle = useMemo(
-		() => ({
-			width: "100%",
-			height: "400px",
-		}),
-		[]
-	);
-
-	const center = useMemo(
-		() => ({
-			lat: 50.5198398,
-			lng: 27.6271339,
-		}),
-		[]
-	);
+// Звичайний iframe з відкладеним завантаженням: без Maps JavaScript API та API-ключа
+export default function Map({ messages = {} }) {
+	const t = messages?.HomePage || {};
 
 	return (
-		<LoadScript googleMapsApiKey={process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY} loading="lazy">
-			<GoogleMap
-				mapContainerStyle={containerStyle}
-				center={center}
-				zoom={14}
-				options={{
-					disableDefaultUI: false,
-					zoomControl: true,
-					streetViewControl: false,
-					mapTypeControl: false,
-				}}
-			>
-				<Marker position={center} title="EcoHouse Strieva" />
-			</GoogleMap>
-		</LoadScript>
+		<>
+			<iframe
+				src={MAPS_EMBED_URL}
+				title={t.mapTitle}
+				width='100%'
+				height='400'
+				style={{ border: 0, display: "block" }}
+				loading='lazy'
+				allowFullScreen
+				referrerPolicy='no-referrer-when-downgrade'
+			/>
+			<a href={MAPS_ROUTE_URL} className='te-color d-inline-block pt-2'>
+				{t.routeLink}
+			</a>
+		</>
 	);
-});
-
-Map.displayName = 'Map';
-
-export default Map;
+}

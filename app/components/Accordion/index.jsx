@@ -1,15 +1,15 @@
 import "./index.css";
 
-export default function Accordion({ qa }) {
+export default function Accordion({ qa, label }) {
 	return (
-		<section className='container accordion accordion--radio' id='ruels' aria-label='Frequently asked questions'>
+		<section className='container accordion accordion--radio' id='ruels' aria-label={label}>
 			{qa.map(({ question, answer }, index) => (
 				<div className='tab' key={index}>
 					<input type='radio' name='accordion-2' id={`rd${index}`} />
-					<label htmlFor={`rd${index}`} className='tab__label' aria-expanded='false'>
+					<label htmlFor={`rd${index}`} className='tab__label'>
 						{question}
 					</label>
-					<div className='tab__content' role='region' aria-labelledby={`rd${index}`}>
+					<div className='tab__content'>
 						<p>{answer}</p>
 					</div>
 				</div>
