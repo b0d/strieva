@@ -1,0 +1,45 @@
+# strieva.com — статичний експорт Next.js на Apache (директиви сумісні з 2.2 і 2.4).
+# Якщо після завантаження сайт віддає 500 — хостинг забороняє якусь із директив
+# (AllowOverride): видаліть цей файл і вмикайте блоки по одному.
+
+ErrorDocument 404 /404.html
+
+# Типи, яких немає у старому mime.types
+AddType image/webp .webp
+AddType font/woff2 .woff2
+AddType application/manifest+json .webmanifest
+AddType video/mp4 .mp4
+
+<IfModule mod_rewrite.c>
+	RewriteEngine On
+
+	# Єдина адреса сайту: https://strieva.com (без www)
+	RewriteCond %{HTTPS} !=on [OR]
+	RewriteCond %{HTTP_HOST} ^www\. [NC]
+	RewriteRule ^(.*)$ https://strieva.com/$1 [R=301,L]
+</IfModule>
+
+<IfModule mod_headers.c>
+	# Файли Next.js мають хеш у назві, тому кешуються назавжди
+	<FilesMatch "\.(js|css)$">
+		Header set Cache-Control "public, max-age=31536000, immutable"
+	</FilesMatch>
+	# Зображення, шрифти, відео та іконки можуть оновитися під тим самим ім'ям
+	<FilesMatch "\.(webp|jpg|jpeg|png|svg|ico|woff2|mp4|webmanifest)$">
+		Header set Cache-Control "public, max-age=2592000"
+	</FilesMatch>
+	# HTML завжди перевіряється на сервері
+	<FilesMatch "\.(html|xml|txt)$">
+		Header set Cache-Control "no-cache"
+	</FilesMatch>
+
+	# 30 днів: якщо сертифікат колись не оновиться, браузери не заблокують сайт на рік
+	Header always set Strict-Transport-Security "max-age=2592000" env=HTTPS
+	Header always set X-Content-Type-Options "nosniff"
+	Header always set X-Frame-Options "SAMEORIGIN"
+	Header always set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>
+
+<IfModule mod_deflate.c>
+	AddOutputFilterByType DEFLATE text/html text/plain text/css text/xml application/javascript application/json application/xml application/manifest+json image/svg+xml
+</IfModule>
