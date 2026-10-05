@@ -12,9 +12,10 @@
 		}
 	},
 
-	// Сторінки, з яких дозволено надсилати форму (localhost — для npm run dev)
+	// Сторінки, з яких дозволено надсилати форму (localhost — для npm run dev).
+	// http-варіанти потрібні, доки хостинг не перенаправляє все на https://strieva.com
 	"vars": {
-		"ALLOWED_ORIGINS": "https://strieva.com,https://www.strieva.com,http://localhost:3000"
+		"ALLOWED_ORIGINS": "https://strieva.com,https://www.strieva.com,http://strieva.com,http://www.strieva.com,http://localhost:3000"
 	},
 
 	// Значення задаються командою `wrangler secret put`, у репозиторії їх немає
